@@ -2,12 +2,25 @@
 
 {% block content %}
     {% for post in posts %}
-        <div class="post">
-            <div class="date">
-                <p>published: {{ post.published_date }}</p>
+        
+        <div class="media">
+            <div class="media-left">
+                <a href="{% url 'blogs:post_detail' pk=post.pk %}">
+                <img class="media-object" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PCEtLQpTb3VyY2UgVVJMOiBob2xkZXIuanMvNjR4NjQKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNWI4NDUzZDMwYiB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1Yjg0NTNkMzBiIj48cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSIxMi41NDY4NzUiIHk9IjM2LjUiPjY0eDY0PC90ZXh0PjwvZz48L2c+PC9zdmc+" alt="blog">
+                </a>
             </div>
-            <h1><a href="{% url 'blogs:post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-            <p>{{ post.text|linebreaksbr }}</p>
+            <div class="media-body">
+                <div class="post">                  
+                    <h4 class="media-heading"><a href="{% url 'blogs:post_detail' pk=post.pk %}">{{ post.title }}</a></h4>
+                    <div class="date">
+                        <p>
+                            <span>published: {{ post.published_date }}</span>
+                            <span><a href="{% url 'blogs:post_detail' pk=post.pk %}"> Comments: {{ post.comments.count }}</a></span>
+                        </p>                        
+                    </div>
+                    <p>{{ post.text|truncatechars:250 }}</p>
+                </div>
+            </div>
         </div>
     {% endfor %}
 {% endblock %}
