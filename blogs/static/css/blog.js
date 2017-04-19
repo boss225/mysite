@@ -29,17 +29,20 @@ export default StyleSheet.create({
   'content': {
     'marginLeft': [{ 'unit': 'px', 'value': 40 }]
   },
+  'body': {
+    'fontFamily': ''Roboto', sans-serif'
+  },
   'h1': {
-    'fontFamily': ''Lobster', cursive'
+    'fontFamily': ''Roboto', sans-serif'
   },
   'h2': {
-    'fontFamily': ''Lobster', cursive'
+    'fontFamily': ''Roboto', sans-serif'
   },
   'h3': {
-    'fontFamily': ''Lobster', cursive'
+    'fontFamily': ''Roboto', sans-serif'
   },
   'h4': {
-    'fontFamily': ''Lobster', cursive'
+    'fontFamily': ''Roboto', sans-serif'
   },
   'date': {
     'color': '#828282'
