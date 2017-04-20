@@ -1,12 +1,13 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-    {% for post in posts %}
-        
-        <div class="media">
+    {% for post in posts %}       
+        <div class="list_post media">
             <div class="media-left">
                 <a href="{% url 'blogs:post_detail' pk=post.pk %}">
-                <img class="media-object" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PCEtLQpTb3VyY2UgVVJMOiBob2xkZXIuanMvNjR4NjQKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNWI4NDUzZDMwYiB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1Yjg0NTNkMzBiIj48cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSIxMi41NDY4NzUiIHk9IjM2LjUiPjY0eDY0PC90ZXh0PjwvZz48L2c+PC9zdmc+" alt="blog">
+                {% for file in post.files.all %}
+                    <img class="media-object" src="{{ file.link }}" alt="blog">
+                {% endfor %}
                 </a>
             </div>
             <div class="media-body">
@@ -23,4 +24,33 @@
             </div>
         </div>
     {% endfor %}
+    {% if posts.has_other_pages %}
+    <div class="pagination_page">
+        <ul class="pagination">
+            {% if posts.has_previous %}
+                <li>
+                    <a href="?page={{ posts.previous_page_number }}" aria-label="Previous"><span aria-hidden="true">«</span></a>
+                </li>
+                {% else %}
+                <li class="disabled"><a aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+            {% endif %}
+            
+            {% for i in posts.paginator.page_range %}
+                {% if posts.number == i %}
+                    <li class="active"><a>{{ i }}</a></li>
+                {% else %}
+                    <li><a href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if posts.has_next %}
+                <li>
+                    <a href="?page={{ posts.next_page_number }}" aria-label="Next"><span aria-hidden="true">»</span></a>
+                </li>
+                {% else %}
+                <li class="disabled"><a aria-label="Next"><span aria-hidden="true">»</span></a></li>
+            {% endif %}
+        </ul>       
+    </div>
+    {% endif %}
 {% endblock %}

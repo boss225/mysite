@@ -7,10 +7,13 @@
 }
 
 .content {
-    margin-left: 60px;
+    min-height: 400px;
 }
 
-img.media-object {width: 150px}
+.list_post img.media-object {
+    width: 200px; 
+    height: 150px;    
+}
 
 body, h1, h2, h3, h4 {
     font-family: 'Roboto', sans-serif;
@@ -32,6 +35,10 @@ body, h1, h2, h3, h4 {
     margin-bottom: 60px;
 }
 
+.post img {
+    width: 100%
+}
+
 .post h1 a, .post h1 a:visited {
     color: #000000;
 }
@@ -51,4 +58,8 @@ body, h1, h2, h3, h4 {
     background: #222;
     color: #888;
     padding: 20px 0;
+}
+
+.pagination_page {
+    text-align: center
 }

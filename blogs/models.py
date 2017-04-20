@@ -34,3 +34,13 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.text
+
+class File(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='files')
+    title = models.CharField(max_length=200)
+    link = models.CharField(max_length=250)
+    created_date = models.DateTimeField(default=timezone.now)
+    updated_date = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.title
